@@ -19,6 +19,9 @@
 ;; 默认全屏
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 
+;; 高亮当前行
+(global-hl-line-mode 1)
+
 ;; 在 prog-mode 下高亮匹配的括号
 (add-hook 'prog-mode-hook #'show-paren-mode)
 
@@ -39,6 +42,7 @@
       ((eq system-type 'darwin)
        (setq default-frame-alist '((font . "FiraCode Nerd Font-14")))
        ))
+
 
 (load-theme 'monokai 1)
 
