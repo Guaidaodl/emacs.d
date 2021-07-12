@@ -19,6 +19,9 @@
 ;; 默认全屏
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 
+;; 在 prog-mode 下高亮匹配的括号
+(add-hook 'prog-mode-hook #'show-paren-mode)
+
 ;; 修改字体
 (defun my-config-windows-font()
   (set-face-attribute 'default nil :font "Consolas" :height 140 :width 'normal)
@@ -27,9 +30,14 @@
                       charset 
                       (font-spec :family "思源黑体" :size 18))))
 
+(seq-filter (lambda (font)
+              (when-let ((info (font-info font)))
+                (string-match-p "spacing=100" (aref info 1))))
+            (font-family-list))
+
 (cond ((eq system-type 'windows-nt) (my-config-windows-font))
       ((eq system-type 'darwin)
-       (setq default-frame-alist '((font . "Fira Code-16")))
+       (setq default-frame-alist '((font . "FiraCode Nerd Font-14")))
        ))
 
 (load-theme 'monokai 1)
