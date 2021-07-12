@@ -1,6 +1,15 @@
+;; 快速打开配置文件
+(defun open-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
+;; 将函数 open-init-file 绑定到 <f2> 键上
+(global-set-key (kbd "<f2>") 'open-init-file)
+
 ;; 关闭工具栏
 (tool-bar-mode -1)
 
+;; 命令行模式关闭菜单栏
 (unless (display-graphic-p)
   (menu-bar-mode -1))
 
@@ -33,18 +42,13 @@
                       charset 
                       (font-spec :family "思源黑体" :size 18))))
 
-(seq-filter (lambda (font)
-              (when-let ((info (font-info font)))
-                (string-match-p "spacing=100" (aref info 1))))
-            (font-family-list))
-
 (cond ((eq system-type 'windows-nt) (my-config-windows-font))
       ((eq system-type 'darwin)
        (setq default-frame-alist '((font . "FiraCode Nerd Font-14")))
        ))
 
 
-(load-theme 'monokai 1)
+;(load-theme 'monokai 1)
 
 ;; 打开最近的文件
 (require 'recentf)
