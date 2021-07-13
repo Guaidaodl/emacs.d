@@ -20,7 +20,6 @@
                     company
                     ;; --- Better Editor ---
                     all-the-icons
-                    monokai-theme
                     neotree
                     exec-path-from-shell
                     ;; --- Major Mode ---
@@ -58,22 +57,12 @@
   :config
   (helm-mode 1))
 
-
-;; 彩虹括号, 只在 prog-mode 才开.
-(use-package rainbow-delimiters
-  :ensure t
-  :hook (prog-mode . rainbow-delimiters-mode)
-  )
-
 ;; git
 (use-package magit
   :ensure t)
 
 ;; 编程模式的扩展
 
-;; kotlin
-(use-package kotlin-mode
-  :ensure t)
 
 ;; 文件末尾
 (provide 'init-packages)
