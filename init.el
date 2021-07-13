@@ -9,6 +9,7 @@
 (global-set-key (kbd "<f2>") 'open-init-file)
 
 ;; Package Management
+(require 'cl)
 (require 'init-packages)
 (require 'init-better-defaults)
 (require 'init-evil)

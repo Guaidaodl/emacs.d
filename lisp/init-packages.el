@@ -4,14 +4,11 @@
 ;;                      __   ___        ___      ___
 ;; |\/|  /\  |\ |  /\  / _` |__   |\/| |__  |\ |  |
 ;; |  | /~~\ | \| /~~\ \__> |___  |  | |___ | \|  |
-(when (>= emacs-major-version 24)
-    (require 'package)
-    (package-initialize)
-    (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-                             ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
-
-;; cl - Common Lisp Extension
-(require 'cl)
+(setq evil-want-keybinding nil)
+(require 'package)
+(package-initialize)
+(setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+                         ("melpa" . "http://elpa.emacs-china.org/melpa/")))
 
 ;; Add Packages
 (defvar gddl/packages '(
@@ -88,7 +85,6 @@
   :ensure t
   :init
   (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-  (setq evil-want-keybinding nil)
   :config
   (evil-mode 1))
 
