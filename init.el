@@ -18,6 +18,20 @@
         ("melpa" . "http://elpa.emacs-china.org/melpa/")))
 (package-initialize)
 
+;; 主题
+(use-package monokai-theme
+  :config
+  (load-theme 'monokai t)
+  )
+
+;; 基础包
+(require 'init-evil)
+
+;; 扩展功能的包
+(use-package which-key
+  :config
+  (which-key-mode))
+
 (use-package all-the-icons)
 
 (use-package neotree
@@ -31,12 +45,7 @@
 
 (use-package kotlin-mode)
 
-(use-package monokai-theme
-  :config
-  (load-theme 'monokai t)
-  )
 
-(require 'init-evil)
 ; (require 'init-packages)
 ; (require 'init-keybinding)
 
@@ -45,7 +54,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(monokai-theme kotlin-mode rainbow-delimiters)))
+ '(package-selected-packages
+   '(evil-surround monokai-theme kotlin-mode rainbow-delimiters)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

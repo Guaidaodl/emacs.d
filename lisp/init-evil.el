@@ -5,7 +5,28 @@
   (setq evil-want-keybinding nil))
 
 (use-package evil-leader
-  :after evil)
+  :after evil
+  :config
+  (evil-leader/set-key
+    "x" '("close" . evil-window-delete)
+    "f" '("File" . (keymap))
+    "fs" '("save" . save-buffer)
+    "w" '("window" . (keymap))
+    "ws" '("split" . evil-window-split)
+    "wv" '("vsplit" . evil-window-vsplit)
+    "wh" '("right". evil-window-right)
+    "wl" '("left" . evil-window-left)
+    "wj" '("down" . evil-window-down)
+    "wk" '("up". evil-window-up)
+    "wm" '("maxium" . delete-other-windows)
+    "w=" '("balance" . balance-windows))
+  )
+
+(use-package evil-surround
+  :ensure t
+  :after evil
+  :config
+  (global-evil-surround-mode 1))
 
 (use-package evil-escape
   :after evil)
@@ -21,6 +42,7 @@
   (evil-leader/set-leader "<SPC>")
   (define-key evil-normal-state-map (kbd "H") 'evil-first-non-blank)
   (define-key evil-normal-state-map (kbd "L") 'evil-end-of-line)
+  ;; 适配 neotree
   (define-key evil-normal-state-map (kbd "C-t") 'neotree-toggle) ;; 补充 neotree 相关
   (add-hook 'neotree-mode-hook
             (lambda () 
