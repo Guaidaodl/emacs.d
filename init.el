@@ -47,7 +47,8 @@
     "gc" '("commit" . magit-commit)
     "gp" '("push" . magit-push)
     "gf" '("fetch" . magit-fetch)
-  )
+  ))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 编程相关
 ;; 彩虹括号, 只在 prog-mode 才开.
