@@ -38,16 +38,26 @@
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 
+;; git
+(use-package magit
+  :config
+  (evil-leader/set-key
+    "g" '("Git" . (keymap))
+    "gs" '("status" . magit-status)
+    "gc" '("commit" . magit-commit)
+    "gp" '("push" . magit-push)
+    "gf" '("fetch" . magit-fetch)
+  )
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 编程相关
 ;; 彩虹括号, 只在 prog-mode 才开.
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode)
   )
 
+(use-package groovy-mode)
+
 (use-package kotlin-mode)
-
-
-; (require 'init-packages)
-; (require 'init-keybinding)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -55,7 +65,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-surround monokai-theme kotlin-mode rainbow-delimiters)))
+   '(groovy-mode evil-surround monokai-theme kotlin-mode rainbow-delimiters)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
