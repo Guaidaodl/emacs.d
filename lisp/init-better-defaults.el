@@ -6,6 +6,9 @@
 ;; 将函数 open-init-file 绑定到 <f2> 键上
 (global-set-key (kbd "<f2>") 'open-init-file)
 
+;; 关闭自动保存的功能
+(setq auto-save-default nil)
+
 ;; 关闭工具栏
 (tool-bar-mode -1)
 
