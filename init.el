@@ -38,6 +38,24 @@
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 
+;; 项目管理
+(use-package projectile
+  :config
+  (projectile-mode +1))
+
+(use-package helm-projectile
+  :after (projectile helm))
+
+;; helm
+(use-package helm 
+  :config
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (evil-leader/set-key
+    "j" '("Jump" . (keymap))
+    "jb" '("buffer" . helm-buffers-list)
+    "jf" '("file" . helm-projectile-find-file))
+  )
+
 ;; git
 (use-package magit
   :config
@@ -69,8 +87,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(helm-minibuffer-history-key "M-p")
  '(package-selected-packages
-   '(groovy-mode evil-surround monokai-theme kotlin-mode rainbow-delimiters)))
+   '(helm-projectile projectile helm groovy-mode evil-surround monokai-theme kotlin-mode rainbow-delimiters)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

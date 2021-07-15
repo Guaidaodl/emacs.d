@@ -11,7 +11,7 @@
     "x" '("close" . evil-window-delete)
     "f" '("File" . (keymap))
     "fs" '("save" . save-buffer)
-    "w" '("window" . (keymap))
+    "w" '("Window" . (keymap))
     "ws" '("split" . evil-window-split)
     "wv" '("vsplit" . evil-window-vsplit)
     "wh" '("right". evil-window-right)
