@@ -47,6 +47,10 @@
     "gc" '("commit" . magit-commit)
     "gp" '("push" . magit-push)
     "gf" '("fetch" . magit-fetch)
+    "gl" '("Log" . (keymap))
+    "gll" '("current" . magit-log-current)
+    "gla" '("all" . magit-log-all)
+    "gli" '("interactive" . magit-log)
   ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
