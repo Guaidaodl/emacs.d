@@ -24,19 +24,34 @@
   (load-theme 'monokai t)
   )
 
-;; 基础包
+;; evil 基础包
 (require 'init-evil)
 
-;; 扩展功能的包
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;扩展功能的包
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (use-package which-key
   :config
-  (which-key-mode))
+  ;; Use additional padding between columns of keys. This variable specifies the
+  ;; number of spaces to add to the left of each column.
+  (setq which-key-add-column-padding 10)
+  (setq which-key-max-display-columns 6)
+  (setq which-key-separator " → ")
+  (setq which-key-unicode-correction 3)
+  (which-key-mode)
+  )
 
 (use-package all-the-icons)
 
 (use-package neotree
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+
+;; company
+(use-package company
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
 
 ;; 项目管理
 (use-package projectile
@@ -51,6 +66,7 @@
   :config
   (global-set-key (kbd "M-x") 'helm-M-x)
   (evil-leader/set-key
+    "<SPC>" '("Run" . helm-M-x)
     "j" '("Jump" . (keymap))
     "jb" '("buffer" . helm-buffers-list)
     "jf" '("file" . helm-projectile-find-file))
@@ -82,6 +98,16 @@
 
 (use-package kotlin-mode)
 
+(use-package cmake-mode)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 编程语言相关的配置
+
+(add-hook 'c++-mode-hook
+	  (lambda ()
+	    (setq c-basic-offset 2)
+	  ))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -89,7 +115,7 @@
  ;; If there is more than one, they won't work right.
  '(helm-minibuffer-history-key "M-p")
  '(package-selected-packages
-   '(helm-projectile projectile helm groovy-mode evil-surround monokai-theme kotlin-mode rainbow-delimiters)))
+   '(company cmake-mode helm-projectile projectile helm groovy-mode evil-surround monokai-theme kotlin-mode rainbow-delimiters)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
