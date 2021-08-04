@@ -12,7 +12,7 @@
     "f" '("File" . (keymap))
     "fs" '("save" . save-buffer)
     "w" '("Window" . (keymap))
-    "ws" '("split" . evil-windowo-split)
+    "ws" '("split" . evil-window-split)
     "wv" '("vsplit" . evil-window-vsplit)
     "wh" '("left". evil-window-left)
     "wl" '("right" . evil-window-right)
@@ -56,7 +56,7 @@
               (evil-define-key 'normal neotree-mode-map (kbd "I") 'neotree-hidden-file-toggle)
 	      (evil-define-key 'normal neotree-mode-map (kbd "d") 'neotree-delete-node)
 	      (evil-define-key 'normal neotree-mode-map (kbd "a") 'neotree-create-node)
-	      (evil-define-key 'normal neotree-mode-map (kbd "r") 'neotree-rename-node)
+	      (evil-define-key 'normal neotree-mode-map (kbd "m") 'neotree-rename-node)
 	      ))
   )
 
@@ -76,3 +76,4 @@
 
 
 (provide 'init-evil)
+;;; init-evil ends here

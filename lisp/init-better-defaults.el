@@ -41,13 +41,13 @@
 (defun my-config-windows-font()
   (set-face-attribute 'default nil :font "Consolas" :height 140 :width 'normal)
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font t 
-                      charset 
+    (set-fontset-font t
+                      charset
                       (font-spec :family "思源黑体" :size 18))))
 
 (cond ((eq system-type 'windows-nt) (my-config-windows-font))
       ((eq system-type 'darwin)
-       (setq default-frame-alist '((font . "FiraCode Nerd Font-14")))
+       (setq default-frame-alist '((font . "FiraCode Nerd Font-16")))
        ))
 
 
@@ -58,4 +58,10 @@
 (recentf-mode 1)
 (setq recentf-max-menu-item 10)
 
+
+;; 自动保存的功能
+(require 'auto-save)
+(auto-save-enable)
+
 (provide 'init-better-defaults)
+;;; init-better-defaults.el ends here

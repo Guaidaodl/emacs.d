@@ -13,8 +13,8 @@
 (setq use-package-always-ensure t)
 
 (require 'package)
-(setq package-archives 
-      '(("gnu"   . "http://elpa.emacs-china.org/gnu/") 
+(setq package-archives
+      '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
         ("melpa" . "http://elpa.emacs-china.org/melpa/")))
 (package-initialize)
 
@@ -62,7 +62,7 @@
   :after (projectile helm))
 
 ;; helm
-(use-package helm 
+(use-package helm
   :config
   (global-set-key (kbd "M-x") 'helm-M-x)
   (evil-leader/set-key
@@ -73,6 +73,10 @@
   )
 
 ;; git
+(use-package diff-hl
+  :config
+  (global-diff-hl-mode))
+
 (use-package magit
   :config
   (evil-leader/set-key
@@ -89,6 +93,34 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 编程相关
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook ((lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp
+  :config
+  (evil-leader/set-key
+    "l" '("Lsp" .(keymap))
+    "la" '("code action" . lsp-execute-code-action)
+    "ld" '("declaration" . lsp-find-declaration)
+    "lf" '("format region" . lsp-format-region)
+    "lF" '("format buffer" . lsp-format-buffer)
+    "li" '("implementation" . lsp-find-implementation)
+    "ll" '("definition" . lsp-find-definition)
+    "lr" '("Refactor" . (keymap))
+    "lrr" '("rename" . lsp-rename)
+    "lR" '("refences" . lsp-find-references)
+    )
+  )
+
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+;(use-package ccls
+;  :hook ((c-mode c++-mode) . (lambda () (require 'ccls) (lsp))))
+
 ;; 彩虹括号, 只在 prog-mode 才开.
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode)
@@ -100,14 +132,23 @@
 
 (use-package cmake-mode)
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; 编程语言相关的配置
+(use-package flycheck
+  :hook (prog-mode . global-flycheck-mode)
+  :config
+  (evil-leader/set-key
+    "s" '("Syntax" . (keymap))
+    "sl" '("error list" . flycheck-list-errors)
+    "sk" '("previous error" . flycheck-previous-error)
+    "sj" '("next error" . flycheck-next-error)
+    )
+  )
 
 (add-hook 'c++-mode-hook
 	  (lambda ()
 	    (setq c-basic-offset 2)
+	    (lsp)
 	  ))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -115,7 +156,8 @@
  ;; If there is more than one, they won't work right.
  '(helm-minibuffer-history-key "M-p")
  '(package-selected-packages
-   '(company cmake-mode helm-projectile projectile helm groovy-mode evil-surround monokai-theme kotlin-mode rainbow-delimiters)))
+   (quote
+    (diff-hl diff-hl-mode company cmake-mode helm-projectile projectile helm groovy-mode evil-surround monokai-theme kotlin-mode rainbow-delimiters))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
