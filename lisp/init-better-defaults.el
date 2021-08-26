@@ -34,8 +34,16 @@
 ;; 高亮当前行
 (global-hl-line-mode 1)
 
-;; 在 prog-mode 下高亮匹配的括号
-(add-hook 'prog-mode-hook #'show-paren-mode)
+;; 更明显的搜索高亮
+(set-face-attribute 'lazy-highlight nil :foreground "#484848" :background "#68F990")
+
+;; 在 prog-mode 下的一些配置
+(add-hook 'prog-mode-hook
+	  (lambda ()
+	    (setq truncate-lines t) ;; 禁止自动换行
+	    (show-paren-mode) ;; 高亮匹配的括号
+	    (set-face-foreground 'show-paren-match "#999999")
+	    ))
 
 ;; 修改字体
 (defun my-config-windows-font()
